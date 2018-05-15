@@ -1,4 +1,5 @@
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Container;
 
 import javax.swing.JButton;
@@ -44,9 +45,18 @@ public class SimpleMindMap {
 		Container contentPane = window.getContentPane();
 		contentPane.add(toolBar, BorderLayout.NORTH);
 		
+        JPanel paneTextEditor = new JPanel();  
+        paneTextEditor.setBackground(Color.BLACK);
+        contentPane.add(paneTextEditor, BorderLayout.WEST);  
+
+        JPanel paneMindMap = new JPanel();  
+        paneMindMap.setBackground(Color.GRAY);
+        contentPane.add(paneMindMap, BorderLayout.CENTER);  
+        
         JPanel paneAttribute = new JPanel();  
+        paneAttribute.setBackground(Color.WHITE);
         contentPane.add(paneAttribute, BorderLayout.EAST);  
-		
+
 		window.setJMenuBar(menuBar);
 		window.setSize(400, 400);
 		window.setVisible(true);
