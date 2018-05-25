@@ -16,6 +16,9 @@ public class TopEvent {
 		return (new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				FileController fc = new FileController();
+				String temp = fc.objectToJson();
+				System.out.println(fc.jsonToObject(temp));
 				System.out.println("Click Load");
 			}
 		});
@@ -24,6 +27,8 @@ public class TopEvent {
 		return (new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				FileController fc = new FileController();
+				System.out.println(fc.objectToJson());
 				System.out.println("Click Save");
 			}
 		});
