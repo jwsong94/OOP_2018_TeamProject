@@ -23,40 +23,8 @@ public class SimpleMindMap extends JFrame{
 
 	public static void main(String[] args) {
 		SimpleMindMap simpleMindMap = new SimpleMindMap();
-		/*
-		JFrame window = new JFrame("SimpleMindMap");
-		TopEvent topEvent = new TopEvent();
-		TopMenuBar topMenuBar = new TopMenuBar();
-		TopToolBar topToolBar = new TopToolBar();
-		
-		topMenuBar.attachTopEvent(topEvent);
-		topToolBar.attachTopEvent(topEvent);
-
-		Container contentPane = window.getContentPane();
-		
-		JSplitPane mainPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
-		
-        JPanel textEditorPane = new JPanel();  
-        textEditorPane.setBackground(Color.BLACK);
-
-        JPanel mindMapPane = new JPanel();  
-        mindMapPane.setBackground(Color.GRAY);
-        
-        JPanel attributePane = new JPanel();  
-        attributePane.setBackground(Color.WHITE);
-
-		contentPane.add(topToolBar, BorderLayout.NORTH);
-        contentPane.add(mainPane, BorderLayout.CENTER);  
-        
-		window.setJMenuBar(topMenuBar);
-		window.setSize(400, 400);
-		window.setVisible(true);
-
-        mainPane.setContinuousLayout(true);
-		mainPane.setRightComponent(attributePane);
-		mainPane.setLeftComponent(textEditorPane);
-		mainPane.setDividerLocation((int)window.getSize().getWidth()/2);
-		*/
+		MindMap mm = new MindMap("계절\n 봄\n  황사\n 여름\n  장마\n  태풍\n 가을\n  단풍\n 겨울\n  폭설");
+		System.out.println(mm);
 	}
 
 	private void init() {
