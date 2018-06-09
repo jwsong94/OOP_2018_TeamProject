@@ -33,8 +33,6 @@ public class drawNode extends JPanel{
 			nodes[i].setLocation(100 + (i*50), 100 + (i*50));
 			add(nodes[i]);
 		}
-		
-		
 	}
 
 }

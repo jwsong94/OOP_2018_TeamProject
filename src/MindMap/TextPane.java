@@ -27,8 +27,11 @@ public class TextPane extends JPanel{
 		setVisible(true);
 		
 	}
-	public static void main(String [] args) {
-		new TextPane();
-	}
+//	public static void main(String [] args) {
+//		new TextPane();
+//	}
 
+	public void Update(String text) {
+		this.text.setText(text);
+	}
 }
