@@ -1,10 +1,13 @@
 package MindMap;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Container;
+import java.awt.Dimension;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 
 public class SimpleMindMap extends JFrame{
@@ -12,10 +15,18 @@ public class SimpleMindMap extends JFrame{
 	TopMenuBar topMenuBar;
 	TopToolBar topToolBar;
 	Container contentPane;
+	JSplitPane subPane;
 	JSplitPane mainPane;
 	JPanel textEditorPane;
 	JPanel mindMapPane;
 	JPanel attributePane;
+	
+	Attribute items = new Attribute();
+	
+	AttributePane attribute = new AttributePane(items);
+	TextPane text = new TextPane();
+	MindMapPane center = new MindMapPane(attribute, items);
+	
 	public SimpleMindMap() {
 		super("SimpleMindMap");
 		init();
@@ -32,13 +43,17 @@ public class SimpleMindMap extends JFrame{
 		topMenuBar = new TopMenuBar();
 		topToolBar = new TopToolBar();
 		contentPane = getContentPane();
-		mainPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
 		textEditorPane = new JPanel();  
 		mindMapPane = new JPanel();  
 		attributePane = new JPanel();  
 
 		topMenuBar.attachTopEvent(topEvent);
 		topToolBar.attachTopEvent(topEvent);
+		
+		mainPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
+		subPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
+		
+		
 
         textEditorPane.setBackground(Color.BLACK);
         mindMapPane.setBackground(Color.GRAY);
@@ -46,14 +61,20 @@ public class SimpleMindMap extends JFrame{
 
 		contentPane.add(topToolBar, BorderLayout.NORTH);
         contentPane.add(mainPane, BorderLayout.CENTER);  
+		
+		mainPane.setLeftComponent(text);
+		mainPane.setRightComponent(subPane);
+		
+		mainPane.setContinuousLayout(true);
+		subPane.setContinuousLayout(true);
+		
+		center.setMinimumSize(new Dimension(500, 500));
+		
+		subPane.setLeftComponent(center);
+		subPane.setRightComponent(attribute);
         
-        mainPane.setContinuousLayout(true);
-		mainPane.setRightComponent(attributePane);
-		mainPane.setLeftComponent(textEditorPane);
-		mainPane.setDividerLocation((int)this.getSize().getWidth()/2);
-
 		setJMenuBar(topMenuBar);
-		setSize(400, 400);
+		setBounds(100, 100, 1000, 500);
 		setVisible(true);
 	}
 }
