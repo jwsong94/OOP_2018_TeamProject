@@ -14,29 +14,35 @@ public class TopEvent {
 	String filePath = "";
 	TextPane tp;
 	MindMap mm;
+	MindMapPane mp;
 	
 	void setTargetTaxtPane(TextPane tp) {
 		this.tp = tp;
 	}
-	
+
 	void setTargetMindMap(MindMap mm) {
 		this.mm = mm;
+	}
+	
+	void setTargetMindMapPane(MindMapPane mp) {
+		this.mp = mp;
 	}
 	
 	ActionListener getNewEvent() {
 		return (new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				/*
 				mm.setMindMap("");
 				tp.Update(mm.toString());
 				filePath = "";
-				/*
+				*/
 				mm.setMindMap("계절\n 봄\n  황사\n 여름\n  장마\n  태풍\n 가을\n  단풍\n 겨울\n  폭설");
 				tp.Update(mm.toString());
-				String temp = mm.toJsonString();
-				System.out.println(temp);
-				mm.fromJsonString(temp);
-				*/
+				mp.Update(mm);
+//				String temp = mm.toJsonString();
+//				System.out.println(temp);
+//				mm.fromJsonString(temp);
 			}
 		});
 	}

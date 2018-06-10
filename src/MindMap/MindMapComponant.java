@@ -4,10 +4,11 @@ import java.util.Stack;
 
 public class MindMapComponant {
 	int id;
+	int parent;
 	String text;
 	int x, y, w, h, depth;
 	String color;
-	public MindMapComponant(int id, String text, int x, int y, int w, int h, int depth, String color) {
+	public MindMapComponant(int id, String text, int parent, int x, int y, int w, int h, int depth, String color) {
 		this.id = id;
 		this.text = text;
 		this.x = x;
@@ -17,11 +18,11 @@ public class MindMapComponant {
 		this.depth = depth;
 		this.color = color;
 	}
-	public MindMapComponant(int id, String text, int depth) {
-		this(id, text, 0, 0, 0, 0, depth, "000000");
+	public MindMapComponant(int id, String text, int parent, int depth) {
+		this(id, text, parent, 150, 150, 60, 30, depth, "000000");
 	}
 	@Override
 	public String toString() {
-		return "(parent="  + ", text=" + text + ")";
+		return text + "(" + x + ","  + y + "," + w + "," + h + ")";
 	}
 }

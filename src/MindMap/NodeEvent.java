@@ -4,6 +4,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import javax.swing.JLabel;
+
 public class NodeEvent extends MouseAdapter implements MouseListener{
 	AttributePane attri;
 	Attribute value;
@@ -22,43 +24,30 @@ public class NodeEvent extends MouseAdapter implements MouseListener{
 	}
 	
 	public void mouseClicked(MouseEvent e) {
-		for(int i=0;i<draw.nodes.length; i++) {
-			if(draw.nodes[i] == e.getSource()) {
-				index = i;
-				break;
-			}
-		}
+		JLabel jl = (JLabel) e.getSource();
 		
-		value.attX.setText(Integer.toString(draw.nodes[index].getX()));
-		value.attY.setText(Integer.toString(draw.nodes[index].getY()));
-		value.attH.setText(Integer.toString(draw.nodes[index].getHeight()));
-		value.attW.setText(Integer.toString(draw.nodes[index].getWidth()));
-		value.attName.setText(draw.nodes[index].getText());
+		value.attX.setText(Integer.toString(jl.getX()));
+		value.attY.setText(Integer.toString(jl.getY()));
+		value.attH.setText(Integer.toString(jl.getHeight()));
+		value.attW.setText(Integer.toString(jl.getWidth()));
+		value.attName.setText(jl.getText());
 	}
 	
 	public void mouseDragged(MouseEvent e) {
+		JLabel node = (JLabel) e.getSource();
 		
-		for(int i=0;i<draw.nodes.length; i++) {
-			if(draw.nodes[i] == e.getSource()) {
-				index = i;
-				break;
-			}
-		}
 		int distanceX = e.getX() - x;
 		int distanceY = e.getY() - y;
 		
-		draw.nodes[index].setLocation(draw.nodes[index].getX() + distanceX, 
-				draw.nodes[index].getY() + distanceY);
+		node.setLocation(node.getX() + distanceX, node.getY() + distanceY);
 		
-		xPos = draw.nodes[index].getX() + distanceX;
-		yPos = draw.nodes[index].getY() + distanceY;
-		value.attX.setText(Integer.toString(draw.nodes[index].getX()));
-		value.attY.setText(Integer.toString(draw.nodes[index].getY()));
-		value.attH.setText(Integer.toString(draw.nodes[index].getHeight()));
-		value.attW.setText(Integer.toString(draw.nodes[index].getWidth()));
-		value.attName.setText(draw.nodes[index].getText());
-		
-		
+		xPos = node.getX() + distanceX;
+		yPos = node.getY() + distanceY;
+		value.attX.setText(Integer.toString(node.getX()));
+		value.attY.setText(Integer.toString(node.getY()));
+		value.attH.setText(Integer.toString(node.getHeight()));
+		value.attW.setText(Integer.toString(node.getWidth()));
+		value.attName.setText(node.getText());
 	}
 	
 	

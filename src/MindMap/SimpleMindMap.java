@@ -22,11 +22,10 @@ public class SimpleMindMap extends JFrame{
 	JPanel attributePane;
 	MindMap mm;
 	
-	Attribute items = new Attribute();
-	
-	AttributePane attribute = new AttributePane(items);
-	TextPane text = new TextPane();
-	MindMapPane center = new MindMapPane(attribute, items);
+	Attribute items;
+	AttributePane attribute;
+	TextPane text;
+	MindMapPane center;
 	
 	public SimpleMindMap() {
 		super("SimpleMindMap");
@@ -43,9 +42,14 @@ public class SimpleMindMap extends JFrame{
 		topToolBar = new TopToolBar();
 		contentPane = getContentPane();
 		mm = new MindMap();
+		items = new Attribute();
+		attribute = new AttributePane(items);
+		text = new TextPane();
+		center = new MindMapPane(attribute, items, mm);
 
 		topEvent.setTargetMindMap(mm);
 		topEvent.setTargetTaxtPane(text);
+		topEvent.setTargetMindMapPane(center);
 		
 		topMenuBar.attachTopEvent(topEvent);
 		topToolBar.attachTopEvent(topEvent);

@@ -6,6 +6,8 @@ import java.util.Stack;
 import com.google.gson.Gson;
 
 public class MindMap {
+	int id = 0;	
+	double theta = 0;
 	List<MindMapComponant> lists;
 	
 	MindMap(){
@@ -30,18 +32,23 @@ public class MindMap {
 		    }
 //			System.out.println(depth + " : " + arr[i].trim());
 			if(i == 0) {
-				mmc = new MindMapComponant(-1, arr[i].trim(), depth);
+				mmc = new MindMapComponant(id, arr[i].trim(), -1, 220, 200, 60, 30, depth, "#0000000");
 				stack.push(mmc);
 //				System.out.println(stack.peek());
 			}
 			else {
 				while(depth <= stack.peek().depth) { stack.pop(); }
+				int d = depth*75;
+				int x = (int)(220 + d*Math.sin(theta));
+				int y = (int) (200 + d*Math.cos(theta));
 				MindMapComponant parent = stack.peek();
-				mmc = new MindMapComponant(parent.id, arr[i].trim(), depth);
+				mmc = new MindMapComponant(id, arr[i].trim(), parent.id, x, y, 60, 30, depth, "#0000000");
 				stack.push(mmc);
 //				System.out.println(stack.peek());
+				theta += 30;
 			}
 			lists.add(mmc);
+			id++;
 		}
 //		for(int i=0; i<dataArr.length; i++) {
 //			System.out.println(dataArr[i]);
