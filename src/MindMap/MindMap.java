@@ -101,7 +101,7 @@ public class MindMap {
 	public List<MindMapComponant> getLists() {
 		return lists;
 	}
-	
+
 	public MindMapComponant getParents(MindMapComponant mmc) {
 		MindMapComponant target = null;
 		for(MindMapComponant current : lists) {

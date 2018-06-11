@@ -1,5 +1,7 @@
 package MindMap;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -9,13 +11,13 @@ import javax.swing.JLabel;
 public class NodeEvent extends MouseAdapter implements MouseListener{
 	MindMap mm;
 	AttributePane attrPane;
-	Attribute value;
-	drawNode draw;
+	MindMapPane mapPane;
 	int x,y,h,w;
 	int xPos, yPos, index;
 	
-	NodeEvent(AttributePane attrPane){
+	NodeEvent(AttributePane attrPane, MindMapPane mapPane){
 		this.attrPane = attrPane;
+		this.mapPane = mapPane;
 	}
 	
 	public void mousePressed(MouseEvent e) {
@@ -62,5 +64,20 @@ public class NodeEvent extends MouseAdapter implements MouseListener{
 	
 	void setMindMap(MindMap mm) {
 		this.mm = mm;
+	}
+	
+	ActionListener getEditEvent() {
+		return (new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				MindMapComponant mmc = getMindMapComponant(attrPane.item.getNameValue());
+				mmc.x = attrPane.item.getXValue();
+				mmc.y = attrPane.item.getYValue();
+				mmc.h = attrPane.item.getHValue();
+				mmc.w = attrPane.item.getWValue();
+				mmc.color = attrPane.item.getColorValue();
+				mapPane.Update(mm);
+			}
+		});
 	}
 }

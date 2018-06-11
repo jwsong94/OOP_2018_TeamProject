@@ -112,27 +112,31 @@ public class Attribute extends JPanel{
 		            Integer.valueOf( color.substring( 5, 7 ), 16 )));
 	 }
 
-	 public String getName(String name) {
+	 public String getNameValue() {
 		 return attName.getText();
 	 }
 
-	 public int getX(String x) {
+	 public int getXValue() {
+		 if(attX.getText().length()==0) return 0;
 		 return Integer.parseInt(attX.getText());
 	 }
 	 
-	 public int getY(String y) {
+	 public int getYValue() {
+		 if(attY.getText().length()==0) return 0;
 		 return Integer.parseInt(attY.getText());
 	 }
 	 
-	 public int getH(String h) {
+	 public int getHValue() {
+		 if(attH.getText().length()==0) return 0;
 		 return Integer.parseInt(attH.getText());
 	 }
 
-	 public int getW(String w) {
+	 public int getWValue() {
+		 if(attW.getText().length()==0) return 0;
 		 return Integer.parseInt(attW.getText());
 	 }
 	 
-	 public String sgtColor(String color) {
+	 public String getColorValue() {
 		 return attColor.getText();
 	 }
 }

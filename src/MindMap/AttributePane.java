@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 
 import javax.swing.BorderFactory;
+import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -14,13 +15,15 @@ public class AttributePane extends JPanel{
 	MindMap mm;
 	MindMapComponant mmc;
 	Attribute item;
+	JButton abtn;
+	NodeEvent ne;
 	
 	public AttributePane(){
 		setLayout(new BorderLayout(0, 10));
 		item = new Attribute();
 		Color colorbg = new Color(212,244,255);
 		Border border = BorderFactory.createLineBorder(Color.BLUE, 3);
-		AttributeButton abtn = new AttributeButton();
+		abtn = new JButton("Edit");
 		
 		//pane.setBorder(border);
 		this.setBackground(colorbg);
@@ -44,5 +47,10 @@ public class AttributePane extends JPanel{
 	public void setMindMapComponant(MindMapComponant mmc) {
 		this.mmc = mmc;
 		Update();
+	}
+	
+	void setNodeEvent(NodeEvent ne) {
+		this.ne = ne;
+		abtn.addActionListener(ne.getEditEvent());
 	}
 }

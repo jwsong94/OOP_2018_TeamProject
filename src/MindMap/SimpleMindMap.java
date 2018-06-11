@@ -45,10 +45,11 @@ public class SimpleMindMap extends JFrame{
 		attrPane = new AttributePane();
 		textPane = new TextPane();
 		mapPane = new MindMapPane(mm);
-		nodeEvent = new NodeEvent(attrPane);
+		nodeEvent = new NodeEvent(attrPane, mapPane);
 		
 		nodeEvent.setMindMap(mm);
 		mapPane.setNodeEvent(nodeEvent);
+		attrPane.setNodeEvent(nodeEvent);
 		topEvent.setTargetMindMap(mm);
 		topEvent.setTargetTaxtPane(textPane);
 		topEvent.setTargetMindMapPane(mapPane);
