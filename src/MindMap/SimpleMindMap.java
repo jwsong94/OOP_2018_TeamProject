@@ -55,6 +55,7 @@ public class SimpleMindMap extends JFrame{
 		
 		topMenuBar.attachTopEvent(topEvent);
 		topToolBar.attachTopEvent(topEvent);
+		textPane.attachTopEvent(topEvent);
 		
 		mainPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
 		subPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);

@@ -11,6 +11,7 @@ public class MindMapComponant {
 	public MindMapComponant(int id, String text, int parent, int x, int y, int w, int h, int depth, String color) {
 		this.id = id;
 		this.text = text;
+		this.parent = parent;
 		this.x = x;
 		this.y = y;
 		this.w = w;

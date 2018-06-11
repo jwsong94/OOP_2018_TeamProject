@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 
 import javax.swing.BorderFactory;
+import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -11,11 +12,12 @@ import javax.swing.border.Border;
 
 public class TextPane extends JPanel{
 	JTextArea text = new JTextArea(7,20);
+	TopEvent te;
+	JButton tbtn;
 	
 	public TextPane(){
 		setLayout(new BorderLayout());
-		Border border = BorderFactory.createLineBorder(Color.BLUE, 3);
-		TextButton tbtn = new TextButton();
+		tbtn = new JButton("적용");
 		//pane.setBorder(border);
 		text.setBackground(Color.cyan);
 		this.setBorder(BorderFactory.createLineBorder(Color.black, 3));
@@ -33,5 +35,10 @@ public class TextPane extends JPanel{
 
 	public void Update(String text) {
 		this.text.setText(text);
+	}
+	
+	void attachTopEvent(TopEvent te) {
+		this.te = te;
+		tbtn.addActionListener(te.getSetEvent());
 	}
 }

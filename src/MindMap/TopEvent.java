@@ -156,4 +156,16 @@ public class TopEvent {
 			}
 		});
 	}
+	
+	ActionListener getSetEvent() {
+		return (new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println(tp.text.getText());
+				mm.setMindMap(tp.text.getText());
+				tp.Update(mm.toString());
+				mp.Update(mm);
+			}
+		});
+	}
 }

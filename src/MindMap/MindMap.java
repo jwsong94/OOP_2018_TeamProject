@@ -22,8 +22,8 @@ public class MindMap {
 		Stack<MindMapComponant> stack = new Stack<MindMapComponant>();
 		lists = new ArrayList<MindMapComponant>();
 		for(int i=0; i<arr.length; i++) {
-			if(arr[i].trim().length() == 1) continue;
-			
+			if(arr[i].trim().length() == 0) continue;
+
 			int depth=0;
 			int fromIndex = -1;
 			MindMapComponant mmc;
@@ -57,14 +57,14 @@ public class MindMap {
 				mmc = new MindMapComponant(id, arr[i].trim(), parent.id, x, y, 60, 30, depth, color);
 				stack.push(mmc);
 //				System.out.println(stack.peek());
-				theta += 30;
+				theta += Math.PI/5;
 			}
 			lists.add(mmc);
 			id++;
 		}
-//		for(int i=0; i<dataArr.length; i++) {
-//			System.out.println(dataArr[i]);
-//		}
+		for(MindMapComponant mmc : lists) {
+			System.out.println(mmc);
+		}
 	}
 	@Override
 	public String toString() {
@@ -100,5 +100,16 @@ public class MindMap {
 	
 	public List<MindMapComponant> getLists() {
 		return lists;
+	}
+	
+	public MindMapComponant getParents(MindMapComponant mmc) {
+		MindMapComponant target = null;
+		for(MindMapComponant current : lists) {
+			if(mmc.parent == current.id) {
+				target = current;
+				break;
+			}
+		}
+		return target;
 	}
 }
