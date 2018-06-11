@@ -15,26 +15,14 @@ public class MindMapPane extends JPanel{
 	MindMap mm;
 	List<JLabel> nodes;
 	JLabel node;
+	NodeEvent ne;
 
-	JLabel[] test = new JLabel[3];
-	String[] nodeNames = {"ex1", "ex2", "ex3"};
-	
-	public MindMapPane(AttributePane value1, Attribute value2, MindMap mm) {
+	public MindMapPane(MindMap mm) {
 		nodes = new LinkedList<JLabel>();
 		this.mm = mm;
 		setLayout(null);
 		Border border = BorderFactory.createLineBorder(Color.BLUE, 3);
 		this.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
-
-		System.out.println("Initialize MindMapPane");
-
-		for(MindMapComponant mmc : mm.lists) {
-			node.setSize(mmc.w, mmc.h);
-			node.setBorder(border);
-			node.setLocation(mmc.x, mmc.y);
-			nodes.add(node);
-			this.add(node);
-		}
 		
 		setVisible(true);
 	}
@@ -44,6 +32,12 @@ public class MindMapPane extends JPanel{
 
 		System.out.println("Update MindMapPane");
 		
+		for(JLabel node : nodes) {
+			this.remove(node);
+		}
+		
+		nodes = new LinkedList<JLabel>();
+		
 		for(MindMapComponant mmc : mm.lists) {
 //			System.out.println("add " + mmc);
 			node = new JLabel(mmc.text);
@@ -51,12 +45,22 @@ public class MindMapPane extends JPanel{
 			node.setSize(mmc.w, mmc.h);
 			node.setHorizontalAlignment(JLabel.CENTER);
 			node.setVerticalAlignment(JLabel.CENTER);
+			node.addMouseMotionListener(ne);
+			node.addMouseListener(ne);
 			node.setBorder(BorderFactory.createLineBorder(Color.BLUE, 3));
 			node.setLocation(mmc.x, mmc.y);
+			node.setBackground(new Color(
+		            Integer.valueOf( mmc.color.substring( 1, 3 ), 16 ),
+		            Integer.valueOf( mmc.color.substring( 3, 5 ), 16 ),
+		            Integer.valueOf( mmc.color.substring( 5, 7 ), 16 )));
 			nodes.add(node);
 			this.add(node);
 		}
 		
 		this.update(getGraphics());
+	}
+	
+	void setNodeEvent(NodeEvent ne) {
+		this.ne = ne;
 	}
 }

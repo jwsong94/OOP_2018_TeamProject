@@ -22,10 +22,10 @@ public class SimpleMindMap extends JFrame{
 	JPanel attributePane;
 	MindMap mm;
 	
-	Attribute items;
-	AttributePane attribute;
-	TextPane text;
-	MindMapPane center;
+	AttributePane attrPane;
+	TextPane textPane;
+	MindMapPane mapPane;
+	NodeEvent nodeEvent;
 	
 	public SimpleMindMap() {
 		super("SimpleMindMap");
@@ -42,14 +42,16 @@ public class SimpleMindMap extends JFrame{
 		topToolBar = new TopToolBar();
 		contentPane = getContentPane();
 		mm = new MindMap();
-		items = new Attribute();
-		attribute = new AttributePane(items);
-		text = new TextPane();
-		center = new MindMapPane(attribute, items, mm);
-
+		attrPane = new AttributePane();
+		textPane = new TextPane();
+		mapPane = new MindMapPane(mm);
+		nodeEvent = new NodeEvent(attrPane);
+		
+		nodeEvent.setMindMap(mm);
+		mapPane.setNodeEvent(nodeEvent);
 		topEvent.setTargetMindMap(mm);
-		topEvent.setTargetTaxtPane(text);
-		topEvent.setTargetMindMapPane(center);
+		topEvent.setTargetTaxtPane(textPane);
+		topEvent.setTargetMindMapPane(mapPane);
 		
 		topMenuBar.attachTopEvent(topEvent);
 		topToolBar.attachTopEvent(topEvent);
@@ -60,16 +62,16 @@ public class SimpleMindMap extends JFrame{
 		contentPane.add(topToolBar, BorderLayout.NORTH);
         contentPane.add(mainPane, BorderLayout.CENTER);  
 		
-		mainPane.setLeftComponent(text);
+		mainPane.setLeftComponent(textPane);
 		mainPane.setRightComponent(subPane);
 		
 		mainPane.setContinuousLayout(true);
 		subPane.setContinuousLayout(true);
 		
-		center.setMinimumSize(new Dimension(500, 500));
+		mapPane.setMinimumSize(new Dimension(500, 500));
 		
-		subPane.setLeftComponent(center);
-		subPane.setRightComponent(attribute);
+		subPane.setLeftComponent(mapPane);
+		subPane.setRightComponent(attrPane);
         
 		setJMenuBar(topMenuBar);
 		setBounds(100, 100, 1000, 500);

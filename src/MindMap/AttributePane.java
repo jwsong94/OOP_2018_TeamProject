@@ -7,15 +7,21 @@ import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import javax.swing.border.Border;
 
 public class AttributePane extends JPanel{
+	MindMap mm;
+	MindMapComponant mmc;
+	Attribute item;
 	
-	public AttributePane(Attribute item){
+	public AttributePane(){
 		setLayout(new BorderLayout(0, 10));
+		item = new Attribute();
 		Color colorbg = new Color(212,244,255);
 		Border border = BorderFactory.createLineBorder(Color.BLUE, 3);
 		AttributeButton abtn = new AttributeButton();
+		
 		//pane.setBorder(border);
 		this.setBackground(colorbg);
 		this.setBorder(BorderFactory.createLineBorder(Color.black, 3));
@@ -23,7 +29,20 @@ public class AttributePane extends JPanel{
 		add(item, BorderLayout.CENTER);
 		add(abtn, BorderLayout.SOUTH);
 		setVisible(true);
-		
 	}
 
+	public void Update() {
+		item.setName(mmc.text);
+		item.setX(mmc.x);
+		item.setY(mmc.y);
+		item.setH(mmc.h);
+		item.setW(mmc.w);
+		item.setW(mmc.w);
+		item.setColor(mmc.color);
+	}
+	
+	public void setMindMapComponant(MindMapComponant mmc) {
+		this.mmc = mmc;
+		Update();
+	}
 }

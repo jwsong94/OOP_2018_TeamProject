@@ -79,6 +79,7 @@ public class TopEvent {
 				    
 				    mm.fromJsonString(json);
 					tp.Update(mm.toString());
+					mp.Update(mm);
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -151,7 +152,7 @@ public class TopEvent {
 		return (new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("Click Exit");
+				System.exit(0);
 			}
 		});
 	}

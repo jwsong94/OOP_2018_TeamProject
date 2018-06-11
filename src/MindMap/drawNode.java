@@ -22,7 +22,7 @@ public class drawNode extends JPanel{
 		setLayout(null);
 		Border border = BorderFactory.createLineBorder(Color.BLUE, 1);
 		//예시용 Draw 나중에 지우
-		NodeEvent draw = new NodeEvent(value2, this);
+//		NodeEvent draw = new NodeEvent(value2, this);
 		
 		for(MindMapComponant mmc : mm.lists) {
 			JLabel node = new JLabel(mmc.text);

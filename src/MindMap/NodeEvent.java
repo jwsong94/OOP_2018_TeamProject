@@ -7,15 +7,15 @@ import java.awt.event.MouseListener;
 import javax.swing.JLabel;
 
 public class NodeEvent extends MouseAdapter implements MouseListener{
-	AttributePane attri;
+	MindMap mm;
+	AttributePane attrPane;
 	Attribute value;
 	drawNode draw;
 	int x,y,h,w;
 	int xPos, yPos, index;
 	
-	NodeEvent(Attribute item1, drawNode item2){
-		value = item1;
-		draw = item2;
+	NodeEvent(AttributePane attrPane){
+		this.attrPane = attrPane;
 	}
 	
 	public void mousePressed(MouseEvent e) {
@@ -24,13 +24,15 @@ public class NodeEvent extends MouseAdapter implements MouseListener{
 	}
 	
 	public void mouseClicked(MouseEvent e) {
-		JLabel jl = (JLabel) e.getSource();
+		JLabel node = (JLabel) e.getSource();
 		
-		value.attX.setText(Integer.toString(jl.getX()));
-		value.attY.setText(Integer.toString(jl.getY()));
-		value.attH.setText(Integer.toString(jl.getHeight()));
-		value.attW.setText(Integer.toString(jl.getWidth()));
-		value.attName.setText(jl.getText());
+		MindMapComponant mmc = getMindMapComponant(node.getText());
+		attrPane.setMindMapComponant(mmc);
+//		value.attX.setText(Integer.toString(jl.getX()));
+//		value.attY.setText(Integer.toString(jl.getY()));
+//		value.attH.setText(Integer.toString(jl.getHeight()));
+//		value.attW.setText(Integer.toString(jl.getWidth()));
+//		value.attName.setText(jl.getText());
 	}
 	
 	public void mouseDragged(MouseEvent e) {
@@ -40,16 +42,25 @@ public class NodeEvent extends MouseAdapter implements MouseListener{
 		int distanceY = e.getY() - y;
 		
 		node.setLocation(node.getX() + distanceX, node.getY() + distanceY);
-		
-		xPos = node.getX() + distanceX;
-		yPos = node.getY() + distanceY;
-		value.attX.setText(Integer.toString(node.getX()));
-		value.attY.setText(Integer.toString(node.getY()));
-		value.attH.setText(Integer.toString(node.getHeight()));
-		value.attW.setText(Integer.toString(node.getWidth()));
-		value.attName.setText(node.getText());
+
+		MindMapComponant mmc = getMindMapComponant(node.getText());
+		mmc.x = node.getX();
+		mmc.y = node.getY();
+		attrPane.setMindMapComponant(mmc);
 	}
 	
+	private MindMapComponant getMindMapComponant(String text) {
+		MindMapComponant target = null;
+		for(MindMapComponant mmc : mm.lists) {
+			if(mmc.text.equals(text)) {
+				target = mmc;
+				break;
+			}
+		}
+		return target;
+	}
 	
-
+	void setMindMap(MindMap mm) {
+		this.mm = mm;
+	}
 }

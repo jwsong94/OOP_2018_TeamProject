@@ -20,6 +20,7 @@ public class Attribute extends JPanel{
 	       attName = new JTextField();
 	       attName.setForeground(Color.red);
 	       attName.setFont(new Font("b", Font.BOLD, 20));
+	       attName.setEnabled(false);
 	       add(text);
 	       add(attName);
 	       setVisible(true);
@@ -82,12 +83,56 @@ public class Attribute extends JPanel{
 		 this.setBackground(colorbg);
 		 setVisible(true);
 	 }
+
+	 public void setName(String name) {
+		 attName.setText(name);
+	 }
+
+	 public void setX(int x) {
+		 attX.setText(x+"");
+	 }
 	 
+	 public void setY(int y) {
+		 attY.setText(y+"");
+	 }
+	 
+	 public void setH(int h) {
+		 attH.setText(h+"");
+	 }
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		new Attribute();
+	 public void setW(int w) {
+		 attW.setText(w+"");
+	 }
+	 
+	 public void setColor(String color) {
+		 attColor.setText(color);
+		 attColor.setBackground(new Color(
+		            Integer.valueOf( color.substring( 1, 3 ), 16 ),
+		            Integer.valueOf( color.substring( 3, 5 ), 16 ),
+		            Integer.valueOf( color.substring( 5, 7 ), 16 )));
+	 }
 
-	}
+	 public String getName(String name) {
+		 return attName.getText();
+	 }
 
+	 public int getX(String x) {
+		 return Integer.parseInt(attX.getText());
+	 }
+	 
+	 public int getY(String y) {
+		 return Integer.parseInt(attY.getText());
+	 }
+	 
+	 public int getH(String h) {
+		 return Integer.parseInt(attH.getText());
+	 }
+
+	 public int getW(String w) {
+		 return Integer.parseInt(attW.getText());
+	 }
+	 
+	 public String sgtColor(String color) {
+		 return attColor.getText();
+	 }
 }
